@@ -168,12 +168,7 @@ async function run() {
           const phone = await usersCollection.deleteOne(query);
           res.send(phone);
         });
-    app.get('/sellers', async (req, res) => {
-            const query = {
-              role: "seller",
-            };
-            const seller = await usersCollection.find(query).toArray();
-            res.send(seller);
+
     })
   } finally {
   }
