@@ -44,7 +44,11 @@ async function run() {
       res.send(phone)
     })
     app.get("/users/:email", async (req, res) => {
-
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await usersCollection.findOne(query)
+      res.send({ isSeller: result?.role === "seller",isBuyer:result?.role==="buyer",isAdmin:result?.role==="admin" });
+    })
     app.get("/verify/:email", async (req, res) => {
       const email = req.params.email;
       const query = { email: email };
