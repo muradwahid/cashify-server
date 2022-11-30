@@ -60,11 +60,7 @@ async function run() {
       const user = await usersCollection.insertOne(userData);
       res.send(user)
     })
-    app.put('/users/:email', async (req, res) => {
-      const email = req.params.email;
-      const query = {
-        email:email
-      }
+
       const options = { upsert: true };
       const updatedDoc = {
         $set: {
