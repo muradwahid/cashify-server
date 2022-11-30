@@ -60,7 +60,11 @@ async function run() {
       const user = await usersCollection.insertOne(userData);
       res.send(user)
     })
-
+    app.put('/users/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = {
+        email:email
+      }
       const options = { upsert: true };
       const updatedDoc = {
         $set: {
@@ -112,11 +116,7 @@ async function run() {
       const phone = await phonesCollection.deleteOne(query)
       res.send(phone)
     })
-    app.get("/advertise", async (req, res) => {
-      const query = {};
-      const result = await advertiseCollection.find(query).toArray();
-      res.send(result)
-    })
+
     app.post('/advertise', async (req, res) => {
       const advertiseData = req.body;
       const advertise = await advertiseCollection.insertOne(advertiseData);
