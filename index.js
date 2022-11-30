@@ -116,7 +116,11 @@ async function run() {
       const phone = await phonesCollection.deleteOne(query)
       res.send(phone)
     })
-
+    app.get("/advertise", async (req, res) => {
+      const query = {};
+      const result = await advertiseCollection.find(query).toArray();
+      res.send(result)
+    })
     app.post('/advertise', async (req, res) => {
       const advertiseData = req.body;
       const advertise = await advertiseCollection.insertOne(advertiseData);
