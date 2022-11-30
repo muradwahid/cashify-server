@@ -147,7 +147,11 @@ async function run() {
       const buyers = await buyersCollection.find(query).toArray();
       res.send(buyers)
     })
-
+    app.get('/buyerorders/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = {
+        buyerEmail: email,
+      };
       const buyers = await buyersCollection.find(query).toArray();
       res.send(buyers)
     })
