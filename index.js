@@ -32,12 +32,6 @@ async function run() {
       res.send(category);
     });
 
-    app.get("/phones/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { categoryId: Number(id) };
-      const cursor = await phonesCollection.find(query).toArray();
-      res.send(cursor);
-    });
     app.post('/phones', async(req, res) => {
       const phoneData = req.body;
       const phone=await phonesCollection.insertOne(phoneData)
